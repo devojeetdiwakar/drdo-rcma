@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DRDO - RCMA Info Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="left-buttons">
+      <button class="btn" onclick="showForm('feedback')">
+        <span data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</span>
+      </button>
+      <button class="btn">
+        <span data-en="Sitemap" data-hi="साइट मानचित्र">Sitemap</span>
+      </button>
+      <button class="btn" onclick="scrollToFaq()">
+        <span data-en="FAQs" data-hi="पूछे जाने वाले प्रश्न">FAQs</span>
+      </button>
+      <button class="btn" onclick="showForm('login')">
+        <span data-en="Login" data-hi="लॉग इन करें">Login</span>
+      </button>
+    </div>
+    <div class="right-buttons">
+      <button class="btn" data-en="Skip to Main Content" data-hi="मुख्य सामग्री पर जाएँ" onclick="document.getElementById('main-content').scrollIntoView()">Skip to Main Content</button>
+      <div class="font-size-controls">
+        <button onclick="changeFontSize(-1)">A-</button>
+        <button onclick="resetFontSize()">A</button>
+        <button onclick="changeFontSize(1)">A+</button>
+      </div>
+      <div class="mode-toggle">
+        <button class="mode-btn light-mode-btn" onclick="setTheme('light')"></button>
+        <button class="mode-btn dark-mode-btn" onclick="setTheme('dark')"></button>
+      </div>
+      <button class="lang-btn" onclick="toggleLanguage()">
+        <span id="lang-en">English</span> / <span id="lang-hi">हिंदी</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Global Header - Upper Part -->
+<div class="global-header">
+  <div class="global-header-inner">
+    <img class="drdo-logo" src="images/drdo-logo.png" alt="DRDO Screenshot Logo">
+    <form class="global-search-form" onsubmit="return performGlobalSearch(event)">
+      <input type="text" id="globalSearchInput" placeholder="Search the website...">
+      <button type="submit" class="search-button">🔍</button>
+    </form>
+  </div>
+
+  <!-- Separator Line -->
+  <hr class="global-header-line">
+  <!-- Navigation Buttons -->
+  <nav class="nav-links">
+    <button>Home</button>
+    <button>DRDO</button>
+    <button>Organisation</button>
+    <button>Outreach</button>
+    <button>Careers</button>
+    <button>Publications</button>
+    <button>RTI</button>
+    <button>Contact Us</button>
+  </nav>
+</div>
+
+  <!-- Header Secondary -->
+<div class="header-secondary">
+  <img src="Screenshot 2025-07-05 at 10.35.23 PM.png" alt="Header Background" class="header-bg-img">
+  <div class="header-overlay">
+    <img src="drdo logo.png" alt="DRDO Circular Logo" class="header-logo-circular">
+    <!-- Clock & Date Section inside Secondary Header -->
+<div class="nav-clock-container">
+  <div class="live-clock" id="live-clock">00:00:00</div>
+  <div class="live-date" id="live-date" onclick="toggleCalendar()">01 Jan 2025</div>
+
+  <!-- Calendar and To Do -->
+  <div id="calendar-popup" class="calendar-popup hidden">
+    
+    <!-- ✕ Close Button -->
+    <button onclick="toggleCalendar()" 
+      style="position:absolute; top:8px; right:12px; border:none; background:none; font-size:18px; cursor:pointer;">✕
+    </button>
+
+    <p class="calendar-text" style="margin-top: 32px;">📅 Coming Soon: Calendar View</p>
+
+    <button class="todo-button" onclick="showToDo()">📝 To Do</button>
+
+    <div id="todo-box" class="todo-box hidden">
+      <textarea placeholder="Write your task or notes here..."></textarea>
+      <button onclick="saveToDo()">Save</button>
+    </div>
+  </div>
+</div>
+
+  
+        <div class="header-text">
+        <h1 class="slide-in" data-en="Defence Research and Development Organisation" data-hi="रक्षा अनुसंधान और विकास संगठन">Defence Research and Development Organisation</h1>
+        <p class="slide-in delay" data-en="Ministry of Defence, Government of India" data-hi="रक्षा मंत्रालय, भारत सरकार">Ministry of Defence, Government of India</p>
+        </div>
+    </div>
+</div>
+
+  
+
+  <!-- Main Content -->
+  <main id="main-content">
+<!-- Slim Header Title -->
+<div class="thin-header">
+  DRDO - RCMA Info Portal
+</div>
+
+
+  <div class="alert-bar">
+    <div class="ticker-content">
+      <a href="https://www.drdo.gov.in/news1" target="_blank">🚨 Important Notice: Software Testing Deadline Extended to 15th July &nbsp;&nbsp;&nbsp;</a>
+      <a href="https://www.drdo.gov.in/news2" target="_blank">📢 New Airworthiness Guidelines Released - IMTAR 2.0 &nbsp;&nbsp;&nbsp;</a>
+      <a href="https://www.drdo.gov.in/news3" target="_blank">🧪 DRDO Internship Evaluation Schedule Out Now! &nbsp;&nbsp;&nbsp;</a>
+    </div>
+  </div>
+
+
+  <div class="content three-column-layout">
+
+  <!-- Column 1: What's New / Notice / Tasks -->
+  <div class="column">
+  <!-- Tab Buttons -->
+  <div class="tab-buttons" id="col1-tabs">
+    <button class="active" onclick="switchTab('col1', 'whatsnew', this)">What's New</button>
+    <button onclick="switchTab('col1', 'notice', this)">Notice</button>
+    <button onclick="switchTab('col1', 'tasks', this)">Tasks</button>
+  </div>
+
+  <!-- Tab Contents -->
+  <div id="col1-whatsnew" class="tab-content active">
+    <ul>
+      <li><strong>03/07/2025:</strong> Advertisement for paid internships at ISSA, Delhi <span class="tag-new">NEW</span></li>
+      <li><strong>02/07/2025:</strong> Internship deadline extended – CFEES, Delhi <span class="tag-new">NEW</span></li>
+      <li><strong>01/07/2025:</strong> Software Testing Guidelines updated in IMTAR 2.0</li>
+    </ul>
+    <a href="#" class="view-all-link">View All What's New →</a>
+  </div>
+
+  <div id="col1-notice" class="tab-content">
+    <ul>
+      <li><strong>05/07/2025:</strong> Office closed for scheduled maintenance</li>
+      <li><strong>03/07/2025:</strong> New Airworthiness circular uploaded</li>
+      <li><strong>02/07/2025:</strong> Updated employee conduct rules</li>
+    </ul>
+    <a href="#" class="view-all-link">View All Notices →</a>
+  </div>
+
+  <div id="col1-tasks" class="tab-content">
+    <ul>
+      <li>🧾 Submit weekly software test report</li>
+      <li>🛠️ Review pending code patches</li>
+      <li>📤 Upload design document before Friday</li>
+    </ul>
+    <a href="#" class="view-all-link">View All Tasks →</a>
+  </div>
+</div>
+
+
+  <!-- Column 2: Message Board / Events -->
+  <div class="column">
+    <div class="tab-buttons" id="col2-tabs">
+      <button class="active" onclick="switchTab('col2', 'msg', this)">Message Board</button>
+      <button onclick="switchTab('col2', 'events', this)">Events</button>
+    </div>
+
+    <div id="col2-msg" class="tab-content active">
+      <ul>
+        <li>🧩 SAMAR Certification for Industry – 01 May 2026</li>
+        <li>🛒 Vendor Registration (Supplier/Dealer)</li>
+        <li>🏖️ Summer Training Instructions Updated</li>
+        <li>📢 DRDO Pensioners Corner Launched</li>
+      </ul>
+        <a href="#" class="view-all-link">View All Message Board →</a>
+    </div>
+
+    <div id="col2-events" class="tab-content">
+      <ul>
+        <li>📅 Townhall: 15 July 2025, 10:00 AM</li>
+        <li>🎉 Independence Day Event – Register Now</li>
+      </ul>
+        <a href="#" class="view-all-link">View All Events →</a>
+    </div>
+  </div>
+
+  <!-- Column 3: Press Release -->
+  <div class="column">
+    <div class="tab-buttons" id="col3-tabs">
+      <button class="active" onclick="switchTab('col3', 'press', this)">Press Release</button>
+    </div>
+
+    <div id="col3-press" class="tab-content active">
+      <ul>
+        <li>📰 DRDO & HAL Partner on Next-Gen Avionics</li>
+        <li>🏆 RCMA Scores 99.9% in Software Reliability</li>
+      </ul>
+        <a href="#" class="view-all-link">View All Press Releases →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Icon Navigation Section -->
+<section class="icon-nav-section">
+  <div class="icon-nav-container">
+    <div class="icon-button" onclick="alert('DDPMAS by CEMILAC clicked')">
+      <span>DDPMAS BY CEMILAC</span>
+    </div>
+    <div class="icon-button" onclick="alert('Student Corner clicked')">
+      <span>STUDENT CORNER</span>
+    </div>
+    <div class="icon-button" onclick="alert('Industry Interface clicked')">
+      <span>INDUSTRY INTERFACE</span>
+    </div>
+    <div class="icon-button" onclick="alert('Procurement clicked')">
+      <span>PROCUREMENT</span>
+    </div>
+    <div class="icon-button" onclick="alert('Careers clicked')">
+      <span>CAREERS</span>
+    </div>
+    <div class="icon-button" onclick="alert('News Corner clicked')">
+      <span>NEWS CORNER</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- Hamburger Menu Button -->
+<div class="menu">
+  <button id="menu-btn" onclick="toggleMenu()">☰</button>
+  <div id="dropdown" class="dropdown-content">
+  <a href="#" onclick="openFormGenerator()">📝 Generate New Form</a>
+  <a href="#" onclick="requireLogin('add')">➕ Add</a>
+  <a href="#" onclick="requireLogin('update')">♻️ Update</a>
+  <a href="#" onclick="requireLogin('translate')">🌐 Translate</a>
+</div>
+</div>
+    <!-- Form Generator Section -->
+    <section id="form-generator" class="form-generator hidden">
+        <h2 data-en="Form Generator" data-hi="फॉर्म जनरेटर">Form Generator</h2>
+        <p data-en="Create custom forms for your needs." data-hi="अपनी आवश्यकताओं के लिए कस्टम फॉर्म बनाएं।">Create custom forms for your needs.</p>
+        <form id="form-generator-form" onsubmit="return generateForm(event)">
+        <label data-en="Form Title" data-hi="फॉर्म शीर्षक">Form Title</label>
+        <input type="text" id="form-title" required>
+    
+        <label data-en="Description" data-hi="विवरण">Description</label>
+        <textarea id="form-description" required></textarea>
+    
+        <label data-en="Fields (comma separated)" data-hi="फ़ील्ड (कॉमा से अलग)">Fields (comma separated)</label>
+        <input type="text" id="form-fields" required>
+    
+        <button type="submit">Generate Form</button>
+        </form>
+        <div id="generated-form" class="generated-form hidden">
+            <h3 data-en="Generated Form" data-hi="जनरेट किया गया फॉर्म">Generated Form</h3>
+            <form id="custom-form"></form>
+            <button onclick="submitCustomForm()">Submit Custom Form</button>
+        </div>
+        <button class="close-btn" onclick="hideForm('form-generator')">&times;</button>
+    </section>
+    <section id="form-generator" class="form-generator hidden">
+      <h2 data-en="Form Generator" data-hi="फॉर्म जनरेटर">Form Generator</h2>
+      <p data-en="Create custom forms for your needs." data-hi="अपनी आवश्यकताओं के लिए कस्टम फॉर्म बनाएं।">Create custom forms for your needs.</p>
+      <form id="form-generator-form" onsubmit="return generateForm(event)">
+        <label data-en="Form Title" data-hi="फॉर्म शीर्षक">Form Title</label>
+        <input type="text" id="form-title" required>        
+        <label data-en="Description" data-hi="विवरण">Description</label>
+
+        <textarea id="form-description" required></textarea>
+        <label data-en="Fields (comma separated)" data-hi="फ़ील्ड (कॉमा से अलग)">Fields (comma separated)</label>
+        <input type="text" id="form-fields" required>
+        <button type="submit">Generate Form</button>
+      </form>
+      <div id="generated-form" class="generated-form hidden">
+        <h3 data-en="Generated Form" data-hi="जनरेट किया गया फॉर्म">Generated Form</h3>
+        <form id="custom-form"></form>
+        <button onclick="submitCustomForm()">Submit Custom Form</button>
+      </div>
+      <button class="close-btn" onclick="hideForm('form-generator')">&times;</button>
+    </section>
+    <section id="form-generator" class="form-generator hidden">
+      <h2 data-en="Form Generator" data-hi="फॉर्म जनरेटर">Form Generator</h2>
+      <p data-en="Create custom forms for your needs." data-hi="अपनी आवश्यकताओं के लिए कस्टम फॉर्म बनाएं।">Create custom forms for your needs.</p>
+      <form id="form-generator-form" onsubmit="return generateForm(event)">
+        <label data-en="Form Title" data-hi="फॉर्म शीर्षक">Form Title</label>
+        <input type="text" id="form-title" required>        
+        <label data-en="Description" data-hi="विवरण">Description</label>     
+        <textarea id="form-description" required></textarea>
+        <label data-en="Fields (comma separated)" data-hi="फ़ील्ड (कॉमा से अलग)">Fields (comma separated)</label>
+        <input type="text" id="form-fields" required>
+        <button type="submit">Generate Form</button>
+      </form>
+    </section>
+
+    <!-- Split Content: Gallery & AI Chatbot -->
+<section class="split-content">
+<div class="gallery-section">
+  <h2>DRDO Moments</h2>
+  <div class="slideshow-container">
+    <img class="slide" src="assets/drdo.webp" alt="DRDO Image" />
+    <img class="slide" src="assets/rudram-1-missile.webp" alt="Rudram Missile" />
+    <img class="slide" src="assets/brahmos-missile.webp" alt="BrahMos Missile" />
+    <img class="slide" src="assets/photo1.jpg" alt="DRDO Screenshot" />
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="chatbot-container">
+  <h3 class="chatbot-header">DRDO AI Assistant</h3>
+  <div class="chatbot-controls">
+    <button id="clear-chat" onclick="clearChat()">Clear Chat</button>
+    <button id="toggle-voice" onclick="toggleVoice()">Toggle Voice</button>
+    <button id="toggle-chat" onclick="toggleChat()">Toggle Chat</button>
+  </div>
+  <div class="chat-box" id="chat-box"></div>
+    <div class="chatbot-response" id="chat-response">
+        <p data-en="How can I assist you today?" data-hi="मैं आपकी आज कैसे मदद कर सकता हूँ?">How can I assist you today?</p>
+  <form id="chat-form" onsubmit="return sendMessage(event)">
+    <input type="text" id="user-input" placeholder="Type your question..." required />
+    <button type="submit">Send</button>
+  </form>
+  
+</div>
+
+</section>
+
+
+
+    <!-- FAQ Section -->
+    <section id="faq-section" class="faq-section">
+      <div class="faq-search">
+        <h2 data-en="Frequently Asked Questions" data-hi="अक्सर पूछे जाने वाले प्रश्न">Frequently Asked Questions</h2>
+        <input type="text" id="faq-search" placeholder="Search FAQs...🔍" onkeyup="filterFAQs()">
+      </div>
+
+      <div class="faq-list" id="faq-container">
+        <!-- Example FAQ -->
+        <div class="faq-item">
+          <div class="faq-question" data-en="What is the full form of DRDO?" data-hi="DRDO का पूर्ण रूप क्या है?">What is the full form of DRDO?</div>
+          <div class="faq-answer" data-en="The full form of DRDO is Defence Research and Development Organisation." data-hi="डीआरडीओ का पूर्ण रूप रक्षा अनुसंधान और विकास संगठन है।">The full form of DRDO is Defence Research and Development Organisation.</div>
+        </div>
+        <!-- Add more FAQs as needed -->
+      </div>
+
+      <!-- Custom Query -->
+      <div class="custom-query">
+        <h3 data-en="Didn't find the information you were looking for?" data-hi="क्या आपको वांछित जानकारी नहीं मिली?">Didn't find the information you were looking for?</h3>
+        <form onsubmit="return handleCustomQuery(event)">
+          <input type="text" required placeholder="Submit your query" />
+          <div class="captcha-section">
+            <canvas id="captchaCanvas-custom" width="150" height="40"></canvas>
+            <input type="text" required placeholder="Enter the characters">
+            <a onclick="generateCaptcha('custom')">Get new captcha!</a>
+          </div>
+          <p style="font-size: 12px; color: gray;" data-en="Note: Login required to submit a query." data-hi="नोट: क्वेरी भेजने के लिए लॉगिन आवश्यक है।">Note: Login required to submit a query.</p>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Feedback Form -->
+  <div id="feedback-form" class="form-popup hidden">
+    <div class="form-card">
+      <button class="close-btn" onclick="hideForm('feedback')">&times;</button>
+      <p data-en="Complete the form below to submit your complaint or suggestion." data-hi="अपनी शिकायत या सुझाव सबमिट करने के लिए नीचे दिया गया फ़ॉर्म भरें।">Complete the form below to submit your complaint or suggestion.</p>
+      <form>
+        <label data-en="Name" data-hi="नाम">Name</label>
+        <input type="text" required>
+
+        <label data-en="Contact Number" data-hi="संपर्क नंबर">Contact Number</label>
+        <input type="text" required>
+
+        <label data-en="Email ID" data-hi="ईमेल आईडी">Email ID</label>
+        <input type="email" required>
+
+        <label data-en="Type" data-hi="प्रकार">Type</label>
+        <select required>
+          <option disabled selected>Select</option>
+          <option data-en="Complaint" data-hi="शिकायत">Complaint</option>
+          <option data-en="Suggestion" data-hi="सुझाव">Suggestion</option>
+        </select>
+
+        <label data-en="Message" data-hi="संदेश">Message</label>
+        <textarea required></textarea>
+
+        <div class="captcha-section">
+          <canvas id="captchaCanvas-feedback" width="150" height="40"></canvas>
+          <input type="text" placeholder="Enter CAPTCHA" required>
+          <a onclick="generateCaptcha('feedback')">Get new captcha!</a>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login Form -->
+  <div id="login-form" class="form-popup hidden">
+    <div class="form-card">
+      <button class="close-btn" onclick="hideForm('login')">&times;</button>
+      <h3 data-en="Login" data-hi="लॉग इन करें">Login</h3>
+      <form onsubmit="login(event)">
+        <label data-en="Username or Email" data-hi="उपयोगकर्ता नाम या ईमेल">Username or Email</label>
+        <input type="text" required>
+
+        <label data-en="Password" data-hi="पासवर्ड">Password</label>
+        <input type="password" required>
+
+        <div class="captcha-section">
+          <canvas id="captchaCanvas-login" width="150" height="40"></canvas>
+          <input type="text" placeholder="Enter CAPTCHA" required>
+          <a onclick="generateCaptcha('login')">Get new captcha!</a>
+        </div>
+        <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+ 
+  <!-- Footer -->
+  
+<footer class="simple-footer">
+  <div class="footer-links-line">
+    <a href="#">Contact Us</a> |
+    <a href="#">Terms & Conditions</a> |
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Copyright Policy</a> |
+    <a href="#">Hyperlink Policy</a> |
+    <a href="#">Accessibility Statement</a> |
+    <a href="#">Website Policy</a> |
+    <a href="#">Help</a> |
+    <a href="#">STQC Certificate</a> |
+    <a href="#">RTI Third Party Audit</a> |
+    <a href="#">Public Grievances</a> |
+    <a href="#">Web Information Manager</a> |
+    <a href="#">Archives</a>
+  </div>
+  <div class="footer-bottom">
+   Copyright © 2025 DRDO, Ministry of Defence, Government of India - RCMA | Last Updated: 06/07/2025
+  </div>
+</footer>
+
+
+  
+  
+
+  <!-- Link JS -->
+  <script src="script.js"></script>
+</body>
+</html>
