@@ -1540,6 +1540,44 @@ button:focus, a:focus {
     padding: 6px 10px;
   }
 }
+.faq-arrow {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 20px;
+  transition: transform 0.4s ease;
+}
+
+.faq-item .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.3s ease;
+  padding: 0 10px;
+  margin-top: 5px;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 500px;
+  opacity: 1;
+  padding: 10px;
+}
+
+.faq-item.open {
+  background-color: #f0f8ff;
+  border-left: 4px solid #007BFF;
+  border-radius: 6px;
+  padding: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.faq-item.open .faq-question .text {
+  font-weight: bold;
+}
+
+.faq-item.open .faq-arrow {
+  color: #007BFF;
+  transform: rotate(90deg);
+}
 
 @media (max-width: 768px) {
   .calendar-popup {
