@@ -191,14 +191,23 @@ function loadFAQs() {
       const isOpen = clickedItem.classList.toggle('open');
       clickedArrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 
-      // Scroll to topbar
-      const topbar = document.querySelector('.topbar');
-      if (topbar) {
-        topbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Ensure scroll to .topbar after slight delay
+      if (isOpen) {
+        setTimeout(() => {
+          const topbar = document.querySelector('.topbar');
+          if (topbar) {
+            const topOffset = topbar.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+              top: topOffset,
+              behavior: 'smooth'
+            });
+          }
+        }, 150); // Wait for animation to begin
       }
     });
   });
 }
+
 
 
 function toggleFAQ(el) {
