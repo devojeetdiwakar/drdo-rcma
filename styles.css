@@ -24,6 +24,9 @@ body {
   padding: 10px;
   background: whitesmoke;
   border-bottom: 1px solid #ccc;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 .left-buttons, .right-buttons {
   display: flex;
@@ -181,12 +184,68 @@ textarea {
   border-color: #444;
 }
 
+.custom-query form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.custom-query label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.custom-query input,
+.custom-query textarea,
+.custom-query button {
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+}
+
+.custom-query textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.custom-query button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.custom-query button:hover {
+  background-color: #1e40af;
+}
+
+.dark-mode .custom-query input,
+.dark-mode .custom-query textarea {
+  background-color: #2c2c2c;
+  color: white;
+  border-color: #555;
+}
+
+.dark-mode .custom-query button {
+  background-color: #1e90ff;
+  color: white;
+}
+
+
+
+
+
 /* ===== Text Size Controls ===== */
 .text-size-controls {
   display: flex;
   gap: 8px;
 }
-f
+
 .text-size-controls button {
   width: 32px;
   height: 32px;
@@ -594,7 +653,9 @@ f
   border-radius: 6px;
   cursor: pointer;
   margin-bottom: 8px;
+  align-self: flex-start;
 }
+
 
 .todo-box {
   display: flex;
@@ -647,9 +708,6 @@ f
   width: fit-content;
 }
 
-.todo-button {
-  align-self: flex-start;
-}
 
 @media (max-width: 600px) {
   .nav-clock-container {
@@ -1323,9 +1381,10 @@ li {
   background-color: #1e1e1e;
   color: #ccc;
   text-align: center;
-  padding: 15px 10px;
-  font-size: 13px;
+  padding: 25px 20px;
+  font-size: 14px;
   line-height: 1.6;
+  margin-top: 40px;
 }
 
 .simple-footer a {
@@ -1343,6 +1402,13 @@ li {
   margin-top: 5px;
   font-size: 12px;
   color: #999;
+}
+
+footer {
+  height: auto;
+  padding: 20px;
+  background: #eee;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -1427,6 +1493,78 @@ body.dark-mode .background-wrapper {
   background: linear-gradient(to bottom, #003300, #00cc66); /* dark green to light green */
   padding: 30px;
 }
+
+button:focus, a:focus {
+  outline: 2px solid #1e90ff;
+  outline-offset: 2px;
+}
+
+/* ===== Responsive Clock & Calendar ===== */
+@media (max-width: 768px) {
+  .nav-clock-container {
+    flex-direction: column;
+    align-items: flex-start;
+    right: 10px;
+    top: auto;
+    bottom: 10px;
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  .live-clock {
+    font-size: 20px;
+    padding: 8px 10px;
+  }
+
+  .live-date {
+    font-size: 14px;
+    padding: 6px 8px;
+    margin-top: 8px;
+  }
+
+  .calendar-popup {
+    width: 100%;
+    max-width: 95%;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .todo-box textarea {
+    font-size: 14px;
+    height: 50px;
+  }
+
+  .todo-box button {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+
+
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  z-index: 9999;
+  font-size: 22px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 50%;
+  display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+#scrollToTopBtn:hover {
+  background-color: #555;
+  transform: scale(1.1);
+}
+
 
 
 /* Responsive for header + nav */
