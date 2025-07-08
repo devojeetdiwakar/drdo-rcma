@@ -159,19 +159,47 @@ function loadFAQs() {
   const container = document.getElementById('faq-container');
   const lang = document.documentElement.getAttribute('data-lang') || 'en';
   container.innerHTML = '';
-  faqs.forEach((faq) => {
+
+  faqs.forEach((faq, index) => {
     const item = document.createElement('div');
     item.className = 'faq-item';
     item.innerHTML = `
-      <div class="faq-question" onclick="toggleFAQ(this)">
-        <span class="icon">➕</span>
+      <div class="faq-question" data-index="${index}">
+        <span class="faq-arrow">⟳</span>
         <span class="text">${faq[lang]}</span>
       </div>
       <div class="faq-answer">${faq[lang + 'Ans']}</div>
     `;
     container.appendChild(item);
   });
+
+  // Bind click events for new structure
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const clickedItem = question.parentElement;
+      const clickedArrow = question.querySelector('.faq-arrow');
+
+      // Collapse all others
+      document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== clickedItem) {
+          item.classList.remove('open');
+          item.querySelector('.faq-arrow').style.transform = 'rotate(0deg)';
+        }
+      });
+
+      // Toggle clicked
+      const isOpen = clickedItem.classList.toggle('open');
+      clickedArrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+
+      // Scroll to topbar
+      const topbar = document.querySelector('.topbar');
+      if (topbar) {
+        topbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 }
+
 
 function toggleFAQ(el) {
   const parent = el.parentElement;
