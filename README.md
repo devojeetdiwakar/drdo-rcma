@@ -64,13 +64,6 @@ To deploy:
 3. Set `Source` as the `main` branch and `/ (root)` folder.
 4. Your site will be available at: https://<your-username>.github.io/<repo-name>/
 
-
----
-
-## 📸 Screenshots
-
-> *(Optional – Add `screenshots/` folder and include gallery preview, chatbot, dark mode, etc.)*
-
 ---
 
 ## 👨‍💻 Developer
