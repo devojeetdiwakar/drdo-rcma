@@ -1,5 +1,5 @@
 let fontSize = 16;
-
+const API_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=YOUR_API_KEY";
 function changeFontSize(delta) {
   fontSize = Math.max(12, Math.min(22, fontSize + delta));
   document.documentElement.style.fontSize = fontSize + 'px';
