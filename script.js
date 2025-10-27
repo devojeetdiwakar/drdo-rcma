@@ -474,7 +474,7 @@ if (slides.length > 0) {
 slideshow.addEventListener("mouseenter", () => clearInterval(interval));
 slideshow.addEventListener("mouseleave", startSlideshow);
 
-function sendMessage(event) {
+async function sendMessage(event) {
   event.preventDefault();
   const input = document.getElementById("user-input");
   const chatBox = document.getElementById("chat-box");
@@ -482,27 +482,38 @@ function sendMessage(event) {
   const message = input.value.trim();
   if (!message) return;
 
-  // User message
+  // Show user message
   const userMsg = document.createElement("div");
   userMsg.className = "chat-message user";
   userMsg.textContent = "👤 You: " + message;
   chatBox.appendChild(userMsg);
 
-  // Placeholder AI response
+  // Placeholder bot message
   const botMsg = document.createElement("div");
   botMsg.className = "chat-message bot";
   botMsg.textContent = "🤖 AI: Thinking...";
   chatBox.appendChild(botMsg);
 
-  // Change background to black for focus
-  chatBox.style.backgroundColor = "#000";
-
-  input.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
+  input.value = "";
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: message }] }]
+      })
+    });
 
-  
+    const data = await res.json();
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I didn’t get that.";
 
-  return false;
+    botMsg.innerHTML = "🤖 AI:<br> " + reply.replace(/\n/g,"<br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  } catch (err) {
+    console.error("Error:", err);
+    botMsg.textContent = "AI: Something went wrong.";
+  }
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function clearChat() {
